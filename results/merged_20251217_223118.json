@@ -1,0 +1,290 @@
+[
+  {
+    "kernel": "gemm",
+    "backend": "cuda",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "M": 1024,
+      "N": 1024,
+      "K": 1024,
+      "dtype": "float16"
+    },
+    "latency_ms": 0.02815999984741211,
+    "compilation_time": 16.54685640335083,
+    "tflops": 76.26007314049586
+  },
+  {
+    "kernel": "gemm",
+    "backend": "pytorch",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "M": 1024,
+      "N": 1024,
+      "K": 1024,
+      "dtype": "float16"
+    },
+    "latency_ms": 0.02170879989862442,
+    "compilation_time": 6.198883056640625e-06,
+    "tflops": 98.92226461288979
+  },
+  {
+    "kernel": "gemm",
+    "backend": "cuda",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "M": 4096,
+      "N": 4096,
+      "K": 4096,
+      "dtype": "float16"
+    },
+    "latency_ms": 0.7581696033477783,
+    "compilation_time": 10.939749002456665,
+    "tflops": 181.27731956691974
+  },
+  {
+    "kernel": "gemm",
+    "backend": "pytorch",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "M": 4096,
+      "N": 4096,
+      "K": 4096,
+      "dtype": "float16"
+    },
+    "latency_ms": 0.5373951911926269,
+    "compilation_time": 4.5299530029296875e-06,
+    "tflops": 255.75024809393133
+  },
+  {
+    "kernel": "gemm",
+    "backend": "cuda",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "M": 8192,
+      "N": 8192,
+      "K": 8192,
+      "dtype": "float16"
+    },
+    "latency_ms": 6.285414505004883,
+    "compilation_time": 10.675749778747559,
+    "tflops": 174.93064727879008
+  },
+  {
+    "kernel": "gemm",
+    "backend": "pytorch",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "M": 8192,
+      "N": 8192,
+      "K": 8192,
+      "dtype": "float16"
+    },
+    "latency_ms": 4.620800018310547,
+    "compilation_time": 5.245208740234375e-06,
+    "tflops": 237.9483257052969
+  },
+  {
+    "kernel": "mha",
+    "backend": "cuda",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 32,
+      "seq_len": 1024,
+      "dim": 128
+    },
+    "latency_ms": 0.9348095893859864,
+    "compilation_time": 21.996330976486206,
+    "tflops": 147.02347411976638
+  },
+  {
+    "kernel": "mha",
+    "backend": "pytorch",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 32,
+      "seq_len": 1024,
+      "dim": 128
+    },
+    "latency_ms": 3.194879913330078,
+    "compilation_time": 6.198883056640625e-06,
+    "tflops": 43.018503731097994
+  },
+  {
+    "kernel": "mha",
+    "backend": "cuda",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 32,
+      "seq_len": 4096,
+      "dim": 128
+    },
+    "latency_ms": 14.796287536621094,
+    "compilation_time": 36.795268535614014,
+    "tflops": 148.6199325411442
+  },
+  {
+    "kernel": "mha",
+    "backend": "pytorch",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 32,
+      "seq_len": 4096,
+      "dim": 128
+    },
+    "latency_ms": 54.67269287109375,
+    "compilation_time": 7.152557373046875e-06,
+    "tflops": 40.221601316342976
+  },
+  {
+    "kernel": "mha",
+    "backend": "cuda",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 128,
+      "seq_len": 4096,
+      "dim": 128
+    },
+    "latency_ms": 59.1810546875,
+    "compilation_time": 37.514928102493286,
+    "tflops": 148.63021736694188
+  },
+  {
+    "kernel": "mha",
+    "backend": "pytorch",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 128,
+      "seq_len": 4096,
+      "dim": 128
+    },
+    "latency_ms": 221.239501953125,
+    "compilation_time": 5.9604644775390625e-06,
+    "tflops": 39.758239123462076
+  },
+  {
+    "kernel": "gemm",
+    "backend": "cutedsl",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "M": 1024,
+      "N": 1024,
+      "K": 1024,
+      "dtype": "float16"
+    },
+    "latency_ms": 0.026419198513031004,
+    "compilation_time": 6.7305028438568115,
+    "tflops": 81.28496581532461
+  },
+  {
+    "kernel": "gemm",
+    "backend": "cutedsl",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "M": 4096,
+      "N": 4096,
+      "K": 4096,
+      "dtype": "float16"
+    },
+    "latency_ms": 0.6207488059997559,
+    "compilation_time": 4.688289642333984,
+    "tflops": 221.408325144735
+  },
+  {
+    "kernel": "gemm",
+    "backend": "cutedsl",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "M": 8192,
+      "N": 8192,
+      "K": 8192,
+      "dtype": "float16"
+    },
+    "latency_ms": 5.318758392333985,
+    "compilation_time": 4.516592502593994,
+    "tflops": 206.72336411459193
+  },
+  {
+    "kernel": "mha",
+    "backend": "cutedsl",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 32,
+      "seq_len": 1024,
+      "dim": 128
+    },
+    "latency_ms": 0.9337856292724609,
+    "compilation_time": 14.76826548576355,
+    "tflops": 147.18469546279334
+  },
+  {
+    "kernel": "mha",
+    "backend": "cutedsl",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 32,
+      "seq_len": 4096,
+      "dim": 128
+    },
+    "latency_ms": 14.813900756835938,
+    "compilation_time": 30.18424391746521,
+    "tflops": 148.4432285356881
+  },
+  {
+    "kernel": "mha",
+    "backend": "cutedsl",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "compute_capability": "8.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 128,
+      "seq_len": 4096,
+      "dim": 128
+    },
+    "latency_ms": 59.22098999023437,
+    "compilation_time": 30.573118209838867,
+    "tflops": 148.52998951315215
+  }
+]

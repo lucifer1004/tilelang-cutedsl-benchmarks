@@ -1,0 +1,156 @@
+[
+  {
+    "kernel": "gemm",
+    "backend": "cuda",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "cpu_model": "AMD EPYC 7232P 8-Core Processor",
+    "compute_capability": "8.0",
+    "config": {
+      "M": 256,
+      "N": 256,
+      "K": 256,
+      "dtype": "float16"
+    },
+    "compile_time_avg": 10.593974431355795,
+    "compile_time_min": 10.505224704742432,
+    "compile_time_max": 11.070173025131226,
+    "samples": [
+      10.74852204322815,
+      10.520680904388428,
+      10.505224704742432,
+      11.070173025131226,
+      10.512720346450806
+    ]
+  },
+  {
+    "kernel": "gemm",
+    "backend": "cutedsl",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "cpu_model": "AMD EPYC 7232P 8-Core Processor",
+    "compute_capability": "8.0",
+    "config": {
+      "M": 256,
+      "N": 256,
+      "K": 256,
+      "dtype": "float16"
+    },
+    "compile_time_avg": 10.596972544987997,
+    "compile_time_min": 10.251129627227783,
+    "compile_time_max": 10.71389102935791,
+    "samples": [
+      10.694307804107666,
+      10.552414894104004,
+      10.71389102935791,
+      10.251129627227783,
+      10.54419493675232
+    ]
+  },
+  {
+    "kernel": "mha",
+    "backend": "cuda",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "cpu_model": "AMD EPYC 7232P 8-Core Processor",
+    "compute_capability": "8.0",
+    "config": {
+      "batch": 1,
+      "heads": 8,
+      "seq_len": 512,
+      "dim": 64
+    },
+    "compile_time_avg": 27.31568455696106,
+    "compile_time_min": 20.166916370391846,
+    "compile_time_max": 37.158899784088135,
+    "samples": [
+      36.594419956207275,
+      21.26082754135132,
+      20.166916370391846,
+      37.158899784088135,
+      24.091806173324585
+    ]
+  },
+  {
+    "kernel": "mha",
+    "backend": "cutedsl",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "cpu_model": "AMD EPYC 7232P 8-Core Processor",
+    "compute_capability": "8.0",
+    "config": {
+      "batch": 1,
+      "heads": 8,
+      "seq_len": 512,
+      "dim": 64
+    },
+    "compile_time_avg": 21.367684443791706,
+    "compile_time_min": 20.486830949783325,
+    "compile_time_max": 25.998085260391235,
+    "samples": [
+      25.998085260391235,
+      20.486830949783325,
+      21.366390466690063,
+      21.865619659423828,
+      20.87104320526123
+    ]
+  },
+  {
+    "kernel": "nsa",
+    "backend": "cuda",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "cpu_model": "AMD EPYC 7232P 8-Core Processor",
+    "compute_capability": "8.0",
+    "config": {
+      "batch": 2,
+      "heads": 16,
+      "seq_len": 1024,
+      "dim": 32,
+      "block_size": 32,
+      "groups": 16,
+      "selected_blocks": 1,
+      "is_causal": true,
+      "scale": 0.1
+    },
+    "compile_time_avg": 32.54185438156128,
+    "compile_time_min": 30.877037525177002,
+    "compile_time_max": 35.93095779418945,
+    "samples": [
+      31.3259220123291,
+      33.991093158721924,
+      32.30854797363281,
+      30.877037525177002,
+      35.93095779418945
+    ]
+  },
+  {
+    "kernel": "nsa",
+    "backend": "cutedsl",
+    "arch": "sm_80",
+    "gpu_model": "NVIDIA A100 80GB PCIe",
+    "cpu_model": "AMD EPYC 7232P 8-Core Processor",
+    "compute_capability": "8.0",
+    "config": {
+      "batch": 2,
+      "heads": 16,
+      "seq_len": 1024,
+      "dim": 32,
+      "block_size": 32,
+      "groups": 16,
+      "selected_blocks": 1,
+      "is_causal": true,
+      "scale": 0.1
+    },
+    "compile_time_avg": 30.037137190500896,
+    "compile_time_min": 29.370774269104004,
+    "compile_time_max": 30.604504585266113,
+    "samples": [
+      30.604504585266113,
+      29.370774269104004,
+      30.036566257476807,
+      29.688060998916626,
+      30.386784315109253
+    ]
+  }
+]
