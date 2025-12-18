@@ -1,0 +1,12 @@
+{
+  "gemm": [
+    {"M": 1024, "N": 1024, "K": 1024, "dtype": "float16"},
+    {"M": 4096, "N": 4096, "K": 4096, "dtype": "float16"},
+    {"M": 8192, "N": 8192, "K": 8192, "dtype": "float16"}
+  ],
+  "mha": [
+    {"batch": 8, "heads": 32, "seq_len": 1024, "dim": 128},
+    {"batch": 8, "heads": 32, "seq_len": 4096, "dim": 128},
+    {"batch": 8, "heads": 128, "seq_len": 4096, "dim": 128}
+  ]
+}

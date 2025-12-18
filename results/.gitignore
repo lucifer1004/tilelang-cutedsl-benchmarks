@@ -1,0 +1,3 @@
+*.json
+!compilation/compile_results_*.json
+!merged_*.json

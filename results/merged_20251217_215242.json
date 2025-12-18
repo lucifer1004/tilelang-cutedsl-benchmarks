@@ -1,0 +1,290 @@
+[
+  {
+    "kernel": "gemm",
+    "backend": "cuda",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "M": 1024,
+      "N": 1024,
+      "K": 1024,
+      "dtype": "float16"
+    },
+    "latency_ms": 0.01393280029296875,
+    "compilation_time": 1.1518316268920898,
+    "tflops": 154.13151720000874
+  },
+  {
+    "kernel": "gemm",
+    "backend": "pytorch",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "M": 1024,
+      "N": 1024,
+      "K": 1024,
+      "dtype": "float16"
+    },
+    "latency_ms": 0.01510079950094223,
+    "compilation_time": 4.5299530029296875e-06,
+    "tflops": 142.2099305315593
+  },
+  {
+    "kernel": "gemm",
+    "backend": "cuda",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "M": 4096,
+      "N": 4096,
+      "K": 4096,
+      "dtype": "float16"
+    },
+    "latency_ms": 0.37662720680236816,
+    "compilation_time": 0.08299064636230469,
+    "tflops": 364.92040667715196
+  },
+  {
+    "kernel": "gemm",
+    "backend": "pytorch",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "M": 4096,
+      "N": 4096,
+      "K": 4096,
+      "dtype": "float16"
+    },
+    "latency_ms": 0.18203200101852418,
+    "compilation_time": 3.337860107421875e-06,
+    "tflops": 755.0263289036401
+  },
+  {
+    "kernel": "gemm",
+    "backend": "cuda",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "M": 8192,
+      "N": 8192,
+      "K": 8192,
+      "dtype": "float16"
+    },
+    "latency_ms": 2.932771110534668,
+    "compilation_time": 0.043328285217285156,
+    "tflops": 374.90536640465956
+  },
+  {
+    "kernel": "gemm",
+    "backend": "pytorch",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "M": 8192,
+      "N": 8192,
+      "K": 8192,
+      "dtype": "float16"
+    },
+    "latency_ms": 1.4632896423339843,
+    "compilation_time": 3.337860107421875e-06,
+    "tflops": 751.3971232805632
+  },
+  {
+    "kernel": "mha",
+    "backend": "cuda",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 32,
+      "seq_len": 1024,
+      "dim": 128
+    },
+    "latency_ms": 0.5448480129241944,
+    "compilation_time": 0.11987900733947754,
+    "tflops": 252.25191284880782
+  },
+  {
+    "kernel": "mha",
+    "backend": "pytorch",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 32,
+      "seq_len": 1024,
+      "dim": 128
+    },
+    "latency_ms": 1.4091103553771973,
+    "compilation_time": 3.5762786865234375e-06,
+    "tflops": 97.53597576480068
+  },
+  {
+    "kernel": "mha",
+    "backend": "cuda",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 32,
+      "seq_len": 4096,
+      "dim": 128
+    },
+    "latency_ms": 6.430242919921875,
+    "compilation_time": 0.2510538101196289,
+    "tflops": 341.98136570223335
+  },
+  {
+    "kernel": "mha",
+    "backend": "pytorch",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 32,
+      "seq_len": 4096,
+      "dim": 128
+    },
+    "latency_ms": 23.708668518066407,
+    "compilation_time": 5.7220458984375e-06,
+    "tflops": 92.75186642709636
+  },
+  {
+    "kernel": "mha",
+    "backend": "cuda",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 128,
+      "seq_len": 4096,
+      "dim": 128
+    },
+    "latency_ms": 25.507484436035156,
+    "compilation_time": 11.044172525405884,
+    "tflops": 344.8436102848898
+  },
+  {
+    "kernel": "mha",
+    "backend": "pytorch",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 128,
+      "seq_len": 4096,
+      "dim": 128
+    },
+    "latency_ms": 98.40919189453125,
+    "compilation_time": 5.9604644775390625e-06,
+    "tflops": 89.38283968061741
+  },
+  {
+    "kernel": "gemm",
+    "backend": "cutedsl",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "M": 1024,
+      "N": 1024,
+      "K": 1024,
+      "dtype": "float16"
+    },
+    "latency_ms": 0.021638399362564086,
+    "compilation_time": 3.1485962867736816,
+    "tflops": 99.24410821787929
+  },
+  {
+    "kernel": "gemm",
+    "backend": "cutedsl",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "M": 4096,
+      "N": 4096,
+      "K": 4096,
+      "dtype": "float16"
+    },
+    "latency_ms": 0.3751487970352173,
+    "compilation_time": 1.952263355255127,
+    "tflops": 366.3585077659141
+  },
+  {
+    "kernel": "gemm",
+    "backend": "cutedsl",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "M": 8192,
+      "N": 8192,
+      "K": 8192,
+      "dtype": "float16"
+    },
+    "latency_ms": 2.920070457458496,
+    "compilation_time": 1.941192626953125,
+    "tflops": 376.5359924681296
+  },
+  {
+    "kernel": "mha",
+    "backend": "cutedsl",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 32,
+      "seq_len": 1024,
+      "dim": 128
+    },
+    "latency_ms": 0.3680000066757202,
+    "compilation_time": 5.848459720611572,
+    "tflops": 373.4754102684311
+  },
+  {
+    "kernel": "mha",
+    "backend": "cutedsl",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 32,
+      "seq_len": 4096,
+      "dim": 128
+    },
+    "latency_ms": 4.690902328491211,
+    "compilation_time": 8.856635570526123,
+    "tflops": 468.78470314671796
+  },
+  {
+    "kernel": "mha",
+    "backend": "cutedsl",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "compute_capability": "9.0",
+    "problem_size": {
+      "batch": 8,
+      "heads": 128,
+      "seq_len": 4096,
+      "dim": 128
+    },
+    "latency_ms": 19.929139709472658,
+    "compilation_time": 8.936618089675903,
+    "tflops": 441.3684258546829
+  }
+]

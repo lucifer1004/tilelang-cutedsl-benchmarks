@@ -1,0 +1,156 @@
+[
+  {
+    "kernel": "gemm",
+    "backend": "cuda",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "cpu_model": "AMD EPYC 7413 24-Core Processor",
+    "compute_capability": "9.0",
+    "config": {
+      "M": 256,
+      "N": 256,
+      "K": 256,
+      "dtype": "float16"
+    },
+    "compile_time_avg": 7.513033628463745,
+    "compile_time_min": 7.333472490310669,
+    "compile_time_max": 7.648592472076416,
+    "samples": [
+      7.591172695159912,
+      7.648592472076416,
+      7.51294732093811,
+      7.434980869293213,
+      7.333472490310669
+    ]
+  },
+  {
+    "kernel": "gemm",
+    "backend": "cutedsl",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "cpu_model": "AMD EPYC 7413 24-Core Processor",
+    "compute_capability": "9.0",
+    "config": {
+      "M": 256,
+      "N": 256,
+      "K": 256,
+      "dtype": "float16"
+    },
+    "compile_time_avg": 6.0949788093566895,
+    "compile_time_min": 6.032445192337036,
+    "compile_time_max": 6.8726537227630615,
+    "samples": [
+      6.8726537227630615,
+      6.129090070724487,
+      6.091392278671265,
+      6.032445192337036,
+      6.064454078674316
+    ]
+  },
+  {
+    "kernel": "mha",
+    "backend": "cuda",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "cpu_model": "AMD EPYC 7413 24-Core Processor",
+    "compute_capability": "9.0",
+    "config": {
+      "batch": 1,
+      "heads": 8,
+      "seq_len": 512,
+      "dim": 64
+    },
+    "compile_time_avg": 11.572518587112427,
+    "compile_time_min": 11.2829008102417,
+    "compile_time_max": 12.41247034072876,
+    "samples": [
+      11.2829008102417,
+      12.008705615997314,
+      11.340034484863281,
+      12.41247034072876,
+      11.368815660476685
+    ]
+  },
+  {
+    "kernel": "mha",
+    "backend": "cutedsl",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "cpu_model": "AMD EPYC 7413 24-Core Processor",
+    "compute_capability": "9.0",
+    "config": {
+      "batch": 1,
+      "heads": 8,
+      "seq_len": 512,
+      "dim": 64
+    },
+    "compile_time_avg": 9.991762399673462,
+    "compile_time_min": 8.956583738327026,
+    "compile_time_max": 20.25140380859375,
+    "samples": [
+      9.080547094345093,
+      8.956583738327026,
+      20.25140380859375,
+      9.610789060592651,
+      11.283951044082642
+    ]
+  },
+  {
+    "kernel": "nsa",
+    "backend": "cuda",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "cpu_model": "AMD EPYC 7413 24-Core Processor",
+    "compute_capability": "9.0",
+    "config": {
+      "batch": 2,
+      "heads": 16,
+      "seq_len": 1024,
+      "dim": 32,
+      "block_size": 32,
+      "groups": 16,
+      "selected_blocks": 1,
+      "is_causal": true,
+      "scale": 0.1
+    },
+    "compile_time_avg": 19.355159521102905,
+    "compile_time_min": 18.23752784729004,
+    "compile_time_max": 27.352394819259644,
+    "samples": [
+      21.422111749649048,
+      27.352394819259644,
+      18.313188552856445,
+      18.330178260803223,
+      18.23752784729004
+    ]
+  },
+  {
+    "kernel": "nsa",
+    "backend": "cutedsl",
+    "arch": "sm_90",
+    "gpu_model": "NVIDIA H200",
+    "cpu_model": "AMD EPYC 7413 24-Core Processor",
+    "compute_capability": "9.0",
+    "config": {
+      "batch": 2,
+      "heads": 16,
+      "seq_len": 1024,
+      "dim": 32,
+      "block_size": 32,
+      "groups": 16,
+      "selected_blocks": 1,
+      "is_causal": true,
+      "scale": 0.1
+    },
+    "compile_time_avg": 16.317431688308716,
+    "compile_time_min": 16.037224531173706,
+    "compile_time_max": 16.60260510444641,
+    "samples": [
+      16.60260510444641,
+      16.037224531173706,
+      16.366089820861816,
+      16.428929328918457,
+      16.157275915145874
+    ]
+  }
+]
