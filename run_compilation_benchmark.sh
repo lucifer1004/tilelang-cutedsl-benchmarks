@@ -1,7 +1,8 @@
 #!/bin/bash
 # Compilation Benchmark Script
-# Measures time to first kernel execution with clean cache
+# Measures time to first kernel execution from fresh Python processes
 # Each measurement runs in a separate Python process to avoid in-memory caching
+# Uses tilelang.disable_cache() to ensure compilation happens every time
 
 set -e
 
@@ -61,7 +62,8 @@ while [[ $# -gt 0 ]]; do
             echo "  --no-visualize       Don't auto-generate plots"
             echo "  --help               Show this help"
             echo ""
-            echo "Note: Each measurement runs in a fresh Python process to avoid in-memory caching."
+            echo "Note: Each measurement runs in a fresh Python process."
+            echo "      Cache is disabled via tilelang.disable_cache() - no manual cache deletion needed."
             exit 0
             ;;
         *)
@@ -81,20 +83,6 @@ echo "  Backends: $BACKENDS"
 echo "  Kernels: $KERNELS"
 echo "  Repeat: $REPEAT"
 echo ""
-
-# Check if cache directory exists
-CACHE_DIR="$HOME/.tilelang"
-if [ -d "$CACHE_DIR" ]; then
-    echo -e "${YELLOW}Warning: TileLang cache exists at $CACHE_DIR${NC}"
-    echo -e "${YELLOW}This benchmark will repeatedly clear this cache!${NC}"
-    echo ""
-    read -p "Continue? (y/n): " choice
-    if [ "$choice" != "y" ] && [ "$choice" != "Y" ]; then
-        echo "Aborted."
-        exit 0
-    fi
-    echo ""
-fi
 
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
@@ -118,7 +106,7 @@ done
 CURRENT=0
 
 echo -e "${GREEN}Starting compilation benchmark...${NC}"
-echo -e "${YELLOW}Note: Each test runs in a fresh Python process${NC}"
+echo -e "${YELLOW}Note: Each test runs in a fresh Python process with cache disabled${NC}"
 echo ""
 
 # Run all combinations
