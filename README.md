@@ -20,11 +20,11 @@ The script will automatically:
 ### Method 2: Manual Step-by-Step Execution
 
 ```bash
-# Step 1: Run baseline tests
+# Step 1: Run baseline tests (default: warmup=5, iters=10)
 python runner.py --backends cuda pytorch --output results/baselines.json
 
-# Step 2: Run CuTeDSL (environment variables set automatically)
-python runner.py --backends cutedsl --output results/cutedsl.json
+# Step 2: Run CuTeDSL (with environment variable)
+TILELANG_USE_GEMM_V1=1 python runner.py --backends cutedsl --output results/cutedsl.json
 
 # Step 3: Merge results
 python merge_results.py results/baselines.json results/cutedsl.json -o results/complete.json
@@ -32,6 +32,8 @@ python merge_results.py results/baselines.json results/cutedsl.json -o results/c
 # Step 4: Visualize
 python visualize.py results/complete.json
 ```
+
+Default parameters: `--warmup 5 --iters 10`. For accurate benchmarking, use `--warmup 20 --iters 200`.
 
 ## Supported Kernels
 
@@ -78,11 +80,6 @@ python runner.py --config configs/default.json
 python runner.py --config configs/test.json --warmup 2 --iters 5
 ```
 
-#### NSA-Specific Test (nsa_only.json)
-```bash
-python runner.py --config configs/nsa_only.json --kernels nsa
-```
-
 ## Configuration File Details
 
 ### configs/default.json
@@ -90,13 +87,6 @@ Complete benchmark configuration, including multiple test cases for all kernels.
 
 ### configs/test.json
 Quick test configuration, tests only 1 size per kernel for verification.
-
-### configs/nsa_only.json
-NSA-specific test configuration with different parameter combinations:
-- Different sequence lengths: 256, 512, 1024, 2048
-- Different block_size: 32, 64
-- Different groups configurations: 1, 4 (for GQA)
-- Different sparsity: varying selected_blocks
 
 ## Script Tools
 
@@ -106,18 +96,20 @@ NSA-specific test configuration with different parameter combinations:
 # Basic usage
 ./run_benchmark.sh
 
-# Custom parameters
-./run_benchmark.sh --config configs/nsa_only.json --warmup 20 --iters 200
+# Custom parameters (use configs/test.json or configs/full.json)
+./run_benchmark.sh --config configs/test.json --warmup 20 --iters 200
 
 # Skip certain steps
 ./run_benchmark.sh --skip-cutedsl           # Run baselines only
 ./run_benchmark.sh --skip-baselines         # Run CuTeDSL only
 
-# Test specific kernel
-./run_benchmark.sh --kernels nsa
-
 # View all options
 ./run_benchmark.sh --help
+```
+
+Note: To test a specific kernel, use `runner.py` directly:
+```bash
+python runner.py --kernels nsa --warmup 20 --iters 200
 ```
 
 ### `run_cutedsl_only.sh` - Quick CuTeDSL Run
@@ -127,7 +119,7 @@ NSA-specific test configuration with different parameter combinations:
 ./run_cutedsl_only.sh
 
 # Specify configuration and output
-./run_cutedsl_only.sh configs/nsa_only.json results/my_cutedsl.json
+./run_cutedsl_only.sh configs/test.json results/my_cutedsl.json
 ```
 
 ### `merge_results.py` - Merge Multiple Results
@@ -179,10 +171,14 @@ Parameter descriptions:
 ./run_benchmark.sh
 ```
 
-### Use Case 2: Test NSA Only
+### Use Case 2: Test Specific Kernel
 
 ```bash
-python runner.py --config configs/nsa_only.json --kernels nsa --backends cuda pytorch
+# Test only NSA kernel with all backends
+python runner.py --kernels nsa --backends cuda pytorch cutedsl
+
+# Test only GEMM with custom config
+python runner.py --config configs/test.json --kernels gemm
 ```
 
 ### Use Case 3: Cross-GPU Comparison
@@ -229,10 +225,19 @@ GPU Information:
 ```
 
 ### Generated Charts
-- `gemm_comparison_{GPU}.png` - GEMM latency and throughput comparison
-- `mha_comparison_{GPU}.png` - MHA latency and throughput comparison  
-- `nsa_comparison_{GPU}.png` - NSA latency and throughput comparison (new)
-- `speedup_comparison_{GPU}.png` - Speedup relative to PyTorch
+
+Performance benchmark charts (from `visualize.py`):
+- `{kernel}_comparison_{GPU_MODEL}.png` - Kernel-specific latency and throughput comparison
+  - Example: `gemm_comparison_NVIDIA_H200.png`
+  - Example: `mha_comparison_NVIDIA_H200.png`
+  - Example: `nsa_comparison_NVIDIA_H200.png`
+- `speedup_comparison_{GPU_MODEL}.png` - Speedup relative to baseline
+  - Baseline: PyTorch for GEMM/MHA, CUDA for NSA
+
+Compilation benchmark charts (from `visualize_compilation.py`):
+- `compile_{kernel}_{arch}_{GPU_MODEL}_{CPU_MODEL}.png` - Per-kernel compilation time
+  - Example: `compile_gemm_sm_90_NVIDIA_H200_AMD_EPYC_7413.png`
+- `compile_summary_{arch}_{GPU_MODEL}_{CPU_MODEL}.png` - Overall compilation summary
 
 ### JSON Result Format
 ```json
@@ -276,8 +281,6 @@ Requirements:
 ## Additional Documentation
 
 - [USAGE.md](USAGE.md) - Detailed usage guide and troubleshooting
-- [WORKFLOW.md](WORKFLOW.md) - Complete workflow for separate backend execution
-- [QUICKSTART.md](QUICKSTART.md) - 5-minute quick start
 
 ## License
 

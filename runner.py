@@ -129,8 +129,8 @@ def main():
     parser.add_argument("--config", default="configs/default.json", help="Config file path")
     parser.add_argument("--output", default=None, help="Output file path (default: auto-generate)")
     parser.add_argument("--append", action="store_true", help="Append to existing output file")
-    parser.add_argument("--warmup", type=int, default=10, help="Warmup iterations")
-    parser.add_argument("--iters", type=int, default=100, help="Benchmark iterations")
+    parser.add_argument("--warmup", type=int, default=5, help="Warmup iterations")
+    parser.add_argument("--iters", type=int, default=10, help="Benchmark iterations")
     parser.add_argument("--verify", action="store_true", help="Verify correctness")
     parser.add_argument("--kernels", nargs="+", default=["gemm", "mha", "nsa"], 
                        help="Kernels to benchmark")

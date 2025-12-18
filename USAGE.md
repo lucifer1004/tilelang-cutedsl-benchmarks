@@ -6,11 +6,16 @@
 
 ```bash
 # Run with default config (all backends, default problem sizes)
+# Default: warmup=5, iters=10
 python runner.py
+
+# For production benchmarking (more accurate)
+python runner.py --warmup 20 --iters 200
 
 # This will test:
 # - GEMM: 1024x1024x1024, 4096x4096x4096, 8192x8192x8192
-# - MHA: B8_H32_S1024_D128, B8_H32_S4096_D128
+# - MHA: B8_H32_S1024_D128, B8_H32_S4096_D128, B8_H128_S4096_D128
+# - NSA: Various configurations (see configs/default.json)
 # - Backends: cutedsl, cuda, pytorch
 ```
 
@@ -26,18 +31,18 @@ python runner.py --backends cuda pytorch
 # More iterations for accurate results
 python runner.py --warmup 20 --iters 200
 
-# Quick test with small iterations
+# Quick test with minimal iterations (default is already fast: warmup=5, iters=10)
 python runner.py --warmup 2 --iters 5
 ```
 
 ### 3. Visualize Results
 
 ```bash
-# Visualize the latest result
-python visualize.py results/sm_90_*.json
+# Visualize the latest result (note: filename includes GPU model)
+python visualize.py results/sm_90_NVIDIA_H200_*.json
 
 # Or specify exact file
-python visualize.py results/sm_90_20251217_191248.json
+python visualize.py results/sm_90_NVIDIA_H200_20251218_143052.json
 ```
 
 This generates PNG plots in the `results/` directory.
@@ -48,7 +53,7 @@ This generates PNG plots in the `results/` directory.
 
 ```
 Detected GPU architecture: sm_90
-Configuration: warmup=10, iters=100
+Configuration: warmup=5, iters=10
 
 === Benchmarking GEMM ===
 [1/18]   [gemm] cutedsl {'M': 1024, ...} ... OK (0.0123 ms, 175.23 TFLOPS)
@@ -63,13 +68,28 @@ Configuration: warmup=10, iters=100
 
 ### Visualize Output
 
-- `gemm_comparison.png` - Side-by-side latency and throughput comparison
-- `mha_comparison.png` - Same for MHA
-- `speedup_comparison.png` - CuTeDSL speedup vs baselines
+Performance benchmarks:
+- `{kernel}_comparison_{GPU_MODEL}.png` - Side-by-side latency and throughput comparison
+  - Example: `gemm_comparison_NVIDIA_H200.png`
+- `speedup_comparison_{GPU_MODEL}.png` - Speedup vs baseline (PyTorch for GEMM/MHA, CUDA for NSA)
 
 ## Customizing Test Cases
 
-Edit `configs/default.json`:
+Three configuration files are available:
+
+### 1. `configs/default.json` (alias: `configs/full.json`)
+Full benchmark with multiple problem sizes for all kernels.
+
+### 2. `configs/test.json`
+Quick validation with one problem size per kernel. Good for correctness checks.
+
+```bash
+python runner.py --config configs/test.json --verify
+```
+
+### Creating Custom Configs
+
+Create your own JSON config file:
 
 ```json
 {
@@ -79,6 +99,9 @@ Edit `configs/default.json`:
   ],
   "mha": [
     {"batch": 16, "heads": 64, "seq_len": 2048, "dim": 64}
+  ],
+  "nsa": [
+    {"batch": 2, "heads": 16, "seq_len": 1024, "dim": 64, "block_size": 32, "groups": 1, "selected_blocks": 16, "is_causal": true}
   ]
 }
 ```
@@ -86,7 +109,7 @@ Edit `configs/default.json`:
 Then run:
 
 ```bash
-python runner.py --config configs/default.json
+python runner.py --config my_custom_config.json
 ```
 
 ## Environment Setup for CuTeDSL

@@ -6,13 +6,6 @@ __pycache__/
 .Python
 .ruff_cache
 
-# Results and outputs
-results/*.json
-results/*.png
-
-# But keep example results
-!results/.gitkeep
-
 # Jupyter
 .ipynb_checkpoints/
 

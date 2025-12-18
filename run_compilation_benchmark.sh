@@ -57,7 +57,7 @@ while [[ $# -gt 0 ]]; do
             echo "  --output-dir DIR     Output directory (default: results/compilation)"
             echo "  --backends LIST      Space-separated backends (default: 'cuda cutedsl')"
             echo "  --kernels LIST       Space-separated kernels (default: 'gemm mha nsa')"
-            echo "  --repeat N           Repetitions per config (default: 3)"
+            echo "  --repeat N           Repetitions per config (default: 5)"
             echo "  --no-visualize       Don't auto-generate plots"
             echo "  --help               Show this help"
             echo ""
